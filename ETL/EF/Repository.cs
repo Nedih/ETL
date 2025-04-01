@@ -57,7 +57,7 @@ namespace ETL.EF
         {
             try
             {
-                _context.BulkInsert(entities);
+                _context.BulkInsertOrUpdate(entities);
                 _context.BulkSaveChanges();
             }
             catch (DbUpdateException ex)

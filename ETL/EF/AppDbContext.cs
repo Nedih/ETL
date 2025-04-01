@@ -16,5 +16,11 @@ namespace ETL.EF
         {
             options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ETLDatabase;Trusted_Connection=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Record>()
+                .HasKey(r => new { r.TpepPickupDatetime, r.TpepDropoffDatetime, r.PassengerCount });
+        }
     }
 }
