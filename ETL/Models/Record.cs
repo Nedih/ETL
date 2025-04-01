@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ETL.Models
 {
-    internal class Record
+    public class Record
     {
+        [Key]  
+        public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime TpepPickupDatetime { get; set; }
         public DateTime TpepDropoffDatetime { get; set; }
         public int PassengerCount { get; set; }
