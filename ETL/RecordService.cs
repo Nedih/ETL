@@ -33,8 +33,8 @@ namespace ETL
             csv.Context.RegisterClassMap<RecordMap>();
 
             var records = csv.GetRecords<Record>()
-                .Where(record => record.FareAmount >= 0 &&
-                record.PassengerCount >= 0)
+                //.Where(record => record.FareAmount >= 0 &&
+                //record.PassengerCount >= 0)
                 .ToList();
 
             var (uniqueRecords, duplicates) = RemoveDuplicates(records);
