@@ -14,8 +14,13 @@ namespace ETL
     {
         public static void Parse()
         {
+            var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                TrimOptions = TrimOptions.Trim 
+            };
+
             using var reader = new StreamReader(AppConfig.FilePath);
-            using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
+            using var csv = new CsvReader(reader, csvConfig);
 
             csv.Context.RegisterClassMap<RecordMap>();
 
