@@ -1,11 +1,10 @@
-﻿using System.Net;
-using ETL;
+﻿using ETL;
 
 DownloadCSV();
 
 Console.ReadKey();
 
-async void DownloadCSV()
+static async void DownloadCSV()
 {
     using HttpClient client = new HttpClient();
     var response = await client.GetAsync(AppConfig.CloudUrl);

@@ -5,18 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
+using CsvHelper.Configuration;
+using ETL.Models;
 
 namespace ETL
 {
     internal class CsvParser
     {
-        void Parse(string location)
+        public static void Parse()
         {
-            using (var reader = new StreamReader(location))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                var records = csv.GetRecords<Record>().ToList();
-            }
+            using var reader = new StreamReader(AppConfig.FilePath);
+            using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
+
+            csv.Context.RegisterClassMap<RecordMap>();
+
+            var records = csv.GetRecords<Record>().ToList();
+            
         }
     }
 }
